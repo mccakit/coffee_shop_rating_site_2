@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+      <div class="col-md-3 mb-2 mb-md-0">
+        <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+          <img src="/static/images/coffee.svg" alt="mdo" width="24" height="24" >
+          <span class="fs-5 mx-2">CSRS</span>
+        </a>
+      </div>
+
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="/search/0/0/0" class="nav-link px-2 link-secondary">Home</a></li>
+        <li><a href="#" class="nav-link px-2">About</a></li>
+        <li><a href="#" class="nav-link px-2">FAQs</a></li>
+      </ul>
+      <div class="col-md-3 text-end">
+        {% if session["login"] == True %}
+          <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="/static/images/user.svg" alt="" width="32">
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="/profile">Profile</a>
+              <a class="dropdown-item" href="/add_shop">Add Shop</a>
+            </div>
+          </div>
+        {% else %}
+          <a href="/login" style="text-decoration: none;">
+            <button type="button" class="btn btn-outline-primary me-2">Login</button>
+          </a>
+          <a href="/register" style="text-decoration: none;">
+            <button type="button" class="btn btn-primary">Sign-up</button>
+          </a>
+        {% endif %}
+      </div>
+    </header>
+  </div>
+  {% block content %}
+  {% endblock %}
+  <div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+      <div class="col-md-4 d-flex align-items-center">
+        <span class="mb-3 mb-md-0 text-body-secondary">©Mehmet Can Çakıt</span>
+      </div>
+
+      <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+        <li class="ms-3"><a class="text-body-secondary" href="/static/images/linkedin.svg"><img src="/static/images/github.svg" alt="mdo" width="24" height="24" ></a></li>
+        <li class="ms-3"><a class="text-body-secondary" href="/static/images/github.svg"><img src="/static/images/linkedin.svg" alt="mdo" width="24" height="24" ></a></li>
+        <li class="ms-3"><a class="text-body-secondary" href="#"><img src="/static/images/email.svg" alt="mdo" width="24" height="24" ></a></li>
+      </ul>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>

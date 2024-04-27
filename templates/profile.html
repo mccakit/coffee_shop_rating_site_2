@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div>
+                    <div class="row mt-4">
+                        <div class="col-lg-4">
+                            <img src="/static/images/user.svg"alt="" width="128">
+                        </div>
+                        <div class="col-lg-8">
+                            <p class="fs-3">@Username</p>
+                            <p class="text-muted fs-4">Manager in Starbucks</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <p class="fs-4">About me:</p>
+                    <p class="text-muted fs-5">Hi I'm Johnathn Deo,has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.</p>
+                </div>
+                <div class="mt-4">
+                  <ul class="nav list-unstyled d-flex">
+                    <li class="me-2"><a class="text-body-secondary" href="#"><img src="/static/images/email.svg" alt="mdo" width="24" height="24" ></a></li>
+                    <li class="me-2"><a class="text-body-secondary" href="#"><img src="/static/images/facebook.svg" alt="mdo" width="24" height="24" ></a></li>
+                    <li class="me-2"><a class="text-body-secondary" href="#"><img src="/static/images/linkedin.svg" alt="mdo" width="24" height="24" ></a></li>
+                  </ul>
+                </div>
+                <div class="mt-4">
+                    <p class="fs-3">Notifications:</p>
+                    <ul style="max-height: 310px; overflow-y: auto;" class="list-group">
+                        <li class="list-group-item">First</li>
+                        <li class="list-group-item">Second</li>
+                        <li class="list-group-item">Third</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-4">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div style="max-height: 720px; overflow-y: auto;" id="list-example" class="list-group">
+                          <a class="list-group-item list-group-item-action" href="#list-item-1">Costa Coffee</a>
+                          <a class="list-group-item list-group-item-action" href="#list-item-2">Dunkin'</a>
+                          <a class="list-group-item list-group-item-action" href="#list-item-3">Peet's Coffee</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div style="max-height: 720px; overflow-y: hidden;" data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0">
+                          <div id="list-item-1" class="mb-4">
+                            <p class="fs-3">Costa Coffee</p>
+                            <table class="table">
+                              <thead class="table-dark">
+                                <tr>
+                                  <th scope="col">Category</th>
+                                  <th scope="col">Rating</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>Overall Rating</td>
+                                  <td>⭐⭐</td>
+                                </tr>
+                                <tr>
+                                  <td>Coffee Rating</td>
+                                  <td>⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                  <td>Service Rating</td>
+                                  <td>⭐⭐</td>
+                                </tr>
+                                <tr>
+                                  <td>Environment Rating</td>
+                                  <td>⭐⭐⭐⭐</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <p class="fs-4">Review:</p>
+                            <p>My experience at Costa Coffee was wonderful. The atmosphere was cozy, and the aroma of freshly brewed coffee was irresistible. The staff was attentive and friendly, making sure I had everything I needed. The coffee was delicious, and the environment was perfect for catching up with friends. I'll definitely be returning soon.</p>
+                          </div>
+                          <div id="list-item-2" class="mb-4">
+                            <p class="fs-3">Dunkin'</p>
+                            <table class="table">
+                              <thead class="table-dark">
+                                <tr>
+                                  <th scope="col">Category</th>
+                                  <th scope="col">Rating</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>Overall Rating</td>
+                                  <td>⭐⭐</td>
+                                </tr>
+                                <tr>
+                                  <td>Coffee Rating</td>
+                                  <td>⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                  <td>Service Rating</td>
+                                  <td>⭐⭐</td>
+                                </tr>
+                                <tr>
+                                  <td>Environment Rating</td>
+                                  <td>⭐⭐⭐⭐</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <p class="fs-4">Review:</p>
+                            <p>I recently visited Dunkin' and had a great time. The ambiance was lively, and the staff was friendly and efficient. The coffee was fantastic, and I especially enjoyed the variety of flavors available. The service was quick, and the environment was comfortable. Overall, it was a fantastic experience, and I'll definitely be back for more.</p>
+                          </div>
+                          <div id="list-item-3" class="mb-4">
+                            <p class="fs-3">Peet's Coffee</p>
+                            <table class="table">
+                              <thead class="table-dark">
+                                <tr>
+                                  <th scope="col">Category</th>
+                                  <th scope="col">Rating</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>Overall Rating</td>
+                                  <td>⭐⭐</td>
+                                </tr>
+                                <tr>
+                                  <td>Coffee Rating</td>
+                                  <td>⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                  <td>Service Rating</td>
+                                  <td>⭐⭐</td>
+                                </tr>
+                                <tr>
+                                  <td>Environment Rating</td>
+                                  <td>⭐⭐⭐⭐</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <p class="fs-4">Review:</p>
+                            <p>Peet's Coffee exceeded my expectations. The atmosphere was warm and inviting, making it the perfect place to relax and enjoy a cup of coffee. The staff was friendly and knowledgeable, and the service was prompt. The coffee itself was exceptional, with rich flavors and a smooth finish. I had a great time and will definitely be back soon.</p>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

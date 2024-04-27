@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row align-items-center g-5 py-5">
+        <div class="col-lg-6">
+            <form method="POST" class="p-5">
+                <h1 class="h3 mb-3 fw-normal">Login</h1>
+                {{ form.hidden_tag() }}
+
+                {{ form.username.label(class="form-label mt-2") }}
+                {{ form.username(class="form-control") }}
+
+                {{ form.password.label(class="form-label mt-2") }}
+                {{ form.password(class="form-control") }}
+
+                <button type="submit" class="btn btn-primary mt-2">Submit</button>
+
+                <div class="mt-2">
+                    <a href="">Forgot Password?</a>
+                </div>
+                <div class="mt-2">
+                    <a href="">Don't Have an Account?</a>
+                </div>
+                {% if form_state == 1 %}
+                    <p style="color: red;" class="mt-2">Wrong Username or Password</p>
+                {% endif %}
+            </form>
+        </div>
+        <div class="col-lg-6">
+            <img src="/static/images/anime_coffee_shop_2.png" class="img-fluid">
+        </div>
+    </div>
+</div>
+{% endblock %}
+

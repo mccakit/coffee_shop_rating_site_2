@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="records">Showing: <b>1-10</b> of <b>200</b> result</div>
+            </div>
+            <div class="col-lg-6 d-flex justify-content-end">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <img src="/static/images/filter.svg" alt="Launch static backdrop modal" class="img-fluid" width="32">
+                </a>
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Filter</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" id="ratingForm" class="p-5">
+                                    {{ form.hidden_tag() }}
+
+                                    {{ form.coffee_rating.label(class="form-label mt-2") }}
+                                    {{ form.coffee_rating(class="form-control") }}
+
+                                    {{ form.service_rating.label(class="form-label mt-2") }}
+                                    {{ form.service_rating(class="form-control") }}
+
+                                    {{ form.environment_rating.label(class="form-label mt-2") }}
+                                    {{ form.environment_rating(class="form-control") }}
+
+                                    {{ form.overall_rating.label(class="form-label mt-2") }}
+                                    {{ form.overall_rating(class="form-control") }}
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" form="ratingForm" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Shop Name</th>
+                        <th scope="col">Coffee Rating</th>
+                        <th scope="col">Service Rating</th>
+                        <th scope="col">Enviroment Rating</th>
+                        <th scope="col">Overall Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for shop in shops %}
+                        <tr>
+                            <td>{{shop[1]}}</td>
+                            <td>
+                                {% for i in range(shop[3]) %}
+                                    <img src="/static/images/star_full.svg" alt="">
+                                {% endfor %}
+                                {% for i in range(5 - shop[3]) %}
+                                    <img src="/static/images/star_empty.svg" alt="">
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% for i in range(shop[4]) %}
+                                    <img src="/static/images/star_full.svg" alt="">
+                                {% endfor %}
+                                {% for i in range(5 - shop[4]) %}
+                                    <img src="/static/images/star_empty.svg" alt="">
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% for i in range(shop[5]) %}
+                                    <img src="/static/images/star_full.svg" alt="">
+                                {% endfor %}
+                                {% for i in range(5 - shop[5]) %}
+                                    <img src="/static/images/star_empty.svg" alt="">
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    {% if page == 1 %}
+                        <li class="page-item"><a class="page-link" href="/lookout/{{latlong}}/{{page}}">Previous</a></li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="/lookout/{{latlong}}/{{page - 1}}">Previous</a></li>
+                    {% endif %}
+
+                    <li class="page-item disabled"><a class="page-link" href="/lookout/{{latlong}}/{{page}}">{{page}}</a></li>
+                    {% for i in range(1, 4) %}
+                            <li class="page-item"><a class="page-link" href="/lookout/{{latlong}}/{{page + i}}">{{page + i}}</a></li>
+                    {% endfor %}
+                    <li class="page-item"><a class="page-link" href="/lookout/{{latlong}}/{{page + 1}}">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

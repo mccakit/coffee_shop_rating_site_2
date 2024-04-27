@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row align-items-center g-5 py-5">
+        <div class="col-lg-6">
+            <form method="POST" class="p-5">
+                <h1 class="h3 mb-3 fw-normal">Add Shop</h1>
+                {{ form.hidden_tag() }}
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        {{ form.latitude.label(class="form-label mt-2") }}
+                        {{ form.latitude(class="form-control") }}
+                    </div>
+                    <div class="col-lg-6">
+                        {{ form.longitude.label(class="form-label mt-2") }}
+                        {{ form.longitude(class="form-control") }}
+                    </div>
+                </div>
+                <div>
+                    {{ form.shop_name.label(class="form-label mt-2") }}
+                    {{ form.shop_name(class="form-control") }}
+                </div>
+                <button type="submit" class="btn btn-primary mt-4">Submit</button>
+            </form>
+        </div>
+        <div class="col-lg-6">
+            <img src="/static/images/anime_coffee_shop_2.png" class="img-fluid">
+        </div>
+    </div>
+</div>
+{% endblock %}
+
