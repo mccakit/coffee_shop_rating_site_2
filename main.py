@@ -11,9 +11,10 @@ import gunicorn
 # Encryption
 import bcrypt
 import re
+import os
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "key"
+app.config["SECRET_KEY"] = os.environ.get('FLASK_KEY')
 
 
 class AddressForm(FlaskForm):
@@ -59,7 +60,7 @@ def index():
 def search(country_id, province_id, region_id):
     current = [1 if var > 0 else 0 for var in [country_id, province_id, region_id]]
     if sum(current) == 0:
-        conn = pg2.connect(database='coffee_shop_rating_site', user='postgres', password='Mesecak01')
+        conn = pg2.connect(database='coffee_shop_rating_site', user='postgres', password=os.environ.get('SERVER_PASSWORD'))
         cur = conn.cursor()
         cur.execute(f"select * from country")
         countries = cur.fetchall()
@@ -67,7 +68,7 @@ def search(country_id, province_id, region_id):
         regions = [[0, "Region"]]
         conn.close()
     elif sum(current) == 1:
-        conn = pg2.connect(database='coffee_shop_rating_site', user='postgres', password='Mesecak01')
+        conn = pg2.connect(database='coffee_shop_rating_site', user='postgres', password=os.environ.get('SERVER_PASSWORD'))
         cur = conn.cursor()
         cur.execute(f"select * from country where country_id = {country_id}")
         countries = cur.fetchall()
@@ -76,7 +77,7 @@ def search(country_id, province_id, region_id):
         regions = [[0, "Region"]]
         conn.close()
     elif sum(current) == 2:
-        conn = pg2.connect(database='coffee_shop_rating_site', user='postgres', password='Mesecak01')
+        conn = pg2.connect(database='coffee_shop_rating_site', user='postgres', password=os.environ.get('SERVER_PASSWORD'))
         cur = conn.cursor()
         cur.execute(f"select * from country where country_id = {country_id}")
         countries = cur.fetchall()
@@ -86,7 +87,7 @@ def search(country_id, province_id, region_id):
         regions = cur.fetchall()
         conn.close()
     elif sum(current) == 3:
-        conn = pg2.connect(database='coffee_shop_rating_site', user='postgres', password='Mesecak01')
+        conn = pg2.connect(database='coffee_shop_rating_site', user='postgres', password=os.environ.get('SERVER_PASSWORD'))
         cur = conn.cursor()
         cur.execute(f"select latlong from region where region_id = {region_id}")
         latlong = cur.fetchall()
@@ -113,7 +114,7 @@ def search(country_id, province_id, region_id):
 def lookout(latlong, page):
     coffee_rating = service_rating = environment_rating = overall_rating = None
     form = FilterForm()
-    conn = pg2.connect(database='coffee_shop_rating_site', user='postgres', password='Mesecak01')
+    conn = pg2.connect(database='coffee_shop_rating_site', user='postgres', password=os.environ.get('SERVER_PASSWORD'))
     cur = conn.cursor()
     cur.execute(f"select * from coffee_shop limit 10 offset {page - 1}*10")
     shops = cur.fetchall()
@@ -125,7 +126,7 @@ def lookout(latlong, page):
         overall_rating = form.overall_rating.data
         form.coffee_rating.data = form.service_rating.data = form.environment_rating.data = form.overall_rating.data = ""
 
-        conn = pg2.connect(database='coffee_shop_rating_site', user='postgres', password='Mesecak01')
+        conn = pg2.connect(database='coffee_shop_rating_site', user='postgres', password=os.environ.get('SERVER_PASSWORD'))
         cur = conn.cursor()
         cur.execute(f"select * from coffee_shop where coffee_rating>={coffee_rating} and service_rating>={service_rating}\
                     and environment_rating>={environment_rating} and overall_rating>={overall_rating} limit 10 offset {page - 1}*10")
@@ -149,7 +150,7 @@ def register():
         role = form.role.data
         form.username.data = form.password.data = form.email.data = form.role.data = form.terms.data = ""
 
-        conn = pg2.connect(database='coffee_shop_rating_site', user='postgres', password='Mesecak01')
+        conn = pg2.connect(database='coffee_shop_rating_site', user='postgres', password=os.environ.get('SERVER_PASSWORD'))
         cur = conn.cursor()
         cur.execute(f"select * from site_user where username = '{username}' or email = '{email}' ")
         result = len(cur.fetchall())
@@ -157,7 +158,7 @@ def register():
         if result == 0:
             salt = bcrypt.gensalt(12)
             hash = bcrypt.hashpw(password=password.encode("utf-8"), salt=salt)
-            conn = pg2.connect(database='coffee_shop_rating_site', user='postgres', password='Mesecak01')
+            conn = pg2.connect(database='coffee_shop_rating_site', user='postgres', password=os.environ.get('SERVER_PASSWORD'))
             cur = conn.cursor()
             cur.execute(f"insert into site_user(username,email,salt,hash,role) \
                 values('{username}','{email}','{salt.decode('utf-8')}','{hash.decode('utf-8')}', '{role}');")
@@ -180,7 +181,7 @@ def login():
         password = form.password.data
         form.username.data = form.password.data = ""
 
-        conn = pg2.connect(database='coffee_shop_rating_site', user='postgres', password='Mesecak01')
+        conn = pg2.connect(database='coffee_shop_rating_site', user='postgres', password=os.environ.get('SERVER_PASSWORD'))
         cur = conn.cursor()
         cur.execute(
             f"select user_id, username, email, salt, encode(hash, 'escape') from site_user where username = '{username}'")
@@ -215,7 +216,7 @@ def add_shop():
         shop_name = form.shop_name.data
         form.latitude.data = form.longitude.data = form.shop_name.data = ""
 
-        conn = pg2.connect(database='coffee_shop_rating_site', user='postgres', password='Mesecak01')
+        conn = pg2.connect(database='coffee_shop_rating_site', user='postgres', password=os.environ.get('SERVER_PASSWORD'))
         cur = conn.cursor()
         cur.execute(f"insert into coffee_shop(latlong, shop_name) \
             values('{latitude, longitude}','{shop_name}');")
